@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Reveal Animation</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+<body>
+    
+    <div class="wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <div class="container">
+        <nav class="menu">
+            <div class="menu-left menu-item">
+                <span class="menu-link">about</span>
+                <span class="menu-link">contact</span>
+            </div>
+            <div class="menu-center menu-item">
+                <div class="brand-logo">Mangekyou</div>
+            </div>
+            <div class="menu-right menu-item">
+                <div class="search-icon">
+                    <i class="fab fa-instagram social"></i>
+                    <i class="fab fa-facebook-f social"></i>
+                    <i class="fab fa-linkedin-in social"></i>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="wrapper-img">
+            <div class="box"></div>
+            <div><img src="hero-image.jpg" alt="some image" class="image"></div>
+        </div>
+
+        <div class="header">
+            <h1 class="header-1">Itachi</h1>
+            <h1 class="header-2">Uchiha</h1>
+        </div>
+
+        <div class="hero-container">
+            <div class="sidebar-text">sharingan</div>
+            <div class="projects">projects</div>
+            <div class="img-nav">
+                <div class="prev">prev</div>
+                <div class="next">next</div>
+            </div>
+        </div>
+
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous"></script>
+    <script>
+
+        let textWrapper = document.querySelector('.header-1');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, '<span class="letter">$&</span>')
+
+        anime.timeline()
+            .add({
+                targets: '.header-1 .letter',
+                translateY: [200, 0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: 'easeOutExpo',
+                duration: 2000,
+                delay: (el, i) => 4800+50*i
+            })
+
+
+        let textWrapper2 = document.querySelector('.header-2');
+        textWrapper2.innerHTML = textWrapper2.textContent.replace(/\S/g, '<span class="letter">$&</span>')
+
+        anime.timeline()
+            .add({
+                targets: '.header-2 .letter',
+                translateY: [200, 0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: 'easeOutExpo',
+                duration: 2000,
+                delay: (el, i) => 4800+50*i
+            })
+
+        TweenMax.to('.wrapper', 2,{
+            top: '-100%',
+            ease: Expo.easeInOut,
+            delay: 3.6
+        })
+
+        let tl = new TimelineMax();
+
+        tl.from('.loader', 1.6, {
+            scaleY: '0%',
+            y: 80,
+            ease: Expo.easeInOut,
+            delay: 1,
+            transformOrigin: '50% 100%'
+        })
+
+        tl.to('.loader', 1.6, {
+            height: '20vh',
+            scaleY: '0%',
+            ease: Expo.easeInOut,
+            transformOrigin: '0% -100%'
+        })
+
+        TweenMax.to('.box', 2.4, {
+            y: '-100%',
+            ease: Expo.easeInOut,
+            delay: 3.8
+        })
+
+        let tl2 = new TweenMax.staggerFrom('.menu > div', 2, {
+            opacity: 0,
+            y: 30,
+            ease: Expo.easeInOut,
+            delay: 4.2
+        }, 0.1)
+
+        let tl3 = new TweenMax.staggerFrom('.hero-container > div', 2, {
+            opacity: 0,
+            y: 30,
+            ease: Expo.easeInOut,
+            delay: 4.2
+        }, 0.1)
+
+    </script>
+
+</body>
+</html>
